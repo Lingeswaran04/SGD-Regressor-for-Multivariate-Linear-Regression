@@ -8,15 +8,20 @@ To write a program to predict the price of the house and number of occupants in 
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-
-1. Import Required Libraries
-2. Load the Dataset
-3. Prepare Features and Targets
-4. Split the Dataset
-5. Train the Model
-6. Make Predictions
-7. Evaluate the Model
-8. Display Predictions
+1. Import necessary libraries: `numpy`, `pandas`, `StandardScaler`, `SGDRegressor`, `MultiOutputRegressor`, and `train_test_split` from `sklearn`.
+2. Load the California housing dataset using `fetch_california_housing`.
+3. Extract input features `x` (using the first three columns) and create `y` as a multi-output target containing the house price and the number of occupants (using the 7th column).
+4. Split the data into training and testing sets using an 80-20 split and set `random_state` for reproducibility.
+5. Initialize `StandardScaler` for scaling both `x` (features) and `y` (targets).
+6. Fit the scaler on `x_train` and transform `x_train` and `x_test`.
+7. Fit the scaler on `y_train` and transform `y_train` and `y_test`.
+8. Create an instance of `SGDRegressor` for stochastic gradient descent regression with a maximum of 1000 iterations and a tolerance of 1e-3.
+9. Wrap the `SGDRegressor` with `MultiOutputRegressor` to handle multi-output regression and fit it on the scaled `x_train` and `y_train`.
+10. Predict the target variables on `x_test` using the trained multi-output model.
+11. Inverse-transform the predictions and `y_test` to bring them back to the original scale.
+12. Calculate the mean squared error (MSE) between the predicted and actual values.
+13. Print the mean squared error.
+14. Print the first five predictions for verification.
 ## Program:
 ```
 Program to implement the multivariate linear regression model for predicting the price of the house and number of occupants in the house with SGD regressor.
